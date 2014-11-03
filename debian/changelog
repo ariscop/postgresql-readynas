@@ -1,0 +1,5 @@
+sample2 (1.0.0-p1) unstable; urgency=low
+
+  * Added dependency to firmware, i.e. readynasos debian package.
+
+ -- Yasuaki Hagiwara <yasuaki.hagiwara.netgear.com>  Fri, 29 Mar 2013 17:53:09 -0800

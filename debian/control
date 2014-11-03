@@ -1,0 +1,14 @@
+Source: sample2
+Section: contrib
+Priority: extra
+Maintainer: hagi <hagi@unknown>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+Homepage: http://www.readynas.com
+
+Package: sample2
+Architecture: all
+Depends: ${misc:Depends}, readynasos (>= 6.0.5~T1271), php5 (>= 5.4.4-10)
+Description: Simple architecture independent example
+ This example will not do anything meaningful.
+
