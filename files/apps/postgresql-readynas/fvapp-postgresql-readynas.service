@@ -1,0 +1,13 @@
+[Unit]
+Description=Service for postgresql
+After=readynasd.service
+
+[Service]
+Type=simple
+User=postgres
+ExecStart=/usr/lib/postgresql/9.1/bin/postgres -D /apps/postgresql-readynas/db
+ExecStop=-/usr/lib/postgresql/9.1/bin/pg_ctl -D /apps/postgresql-readynas/db stop
+ExecReload=/usr/lib/postgresql/9.1/bin/pg_ctl -D /apps/postgresql-readynas/db reload
+
+[Install]
+WantedBy=multi-user.target

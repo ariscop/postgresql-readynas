@@ -1,4 +1,4 @@
-<Application resource-id="postgresql"><!-- 'resource-id' must be AppName -->
+<Application resource-id="postgresql-readynas"><!-- 'resource-id' must be AppName -->
   <Category>APP_CAT_NETWORK_OTHER</Category>
   <Name>Postgresql 9.1</Name><!-- Any desciptive name, upto 48 chars -->
   <Author>ariscop</Author><!-- Authers name. upto 48 chars -->
@@ -9,6 +9,6 @@
   <InfoURL>http://www.postgresql.org/</InfoURL>
   <ReservePort>5432 </ReservePort>
   <DebianPackage>postgresql-readynas</DebianPackage>
-  <ServiceName>fvapp-postgresql.service</ServiceName><!-- no service required -->
+  <ServiceName>fvapp-postgresql-readynas.service</ServiceName><!-- no service required -->
   <Description lang="en-us">Postgresql database server.</Description>
 </Application>

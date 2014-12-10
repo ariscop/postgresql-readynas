@@ -20,7 +20,7 @@ set -e
 
 case "$1" in
   configure)
-    APPDIR=/apps/postgresql
+    APPDIR=/apps/postgresql-readynas
 
     if [ ! -d $APPDIR/db ]; then
         chown -R admin:postgres $APPDIR
@@ -44,7 +44,7 @@ EOF
         chmod g+r /etc/shadow
 
     fi
-    event_push app readynasd '<add-s resource-type="LocalApp" resource-id="LocalApp"><LocalApp appname="postgresql" success="1" reboot="1"/></add-s>' 0 0
+    event_push app readynasd '<add-s resource-type="LocalApp" resource-id="LocalApp"><LocalApp appname="postgresql-readynas" success="1" reboot="1"/></add-s>' 0 0
     ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)

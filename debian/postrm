@@ -18,8 +18,8 @@ set -e
 
 case "$1" in
     purge)
-       rm -rf /apps/postgresql
-       event_push app readynasd '<delete-s resource-type="LocalApp" resource-id="LocalApp"><LocalApp appname="postgresql" success="1" reboot="1"/></delete-s>' 0 0
+       rm -rf /apps/postgresql-readynas
+       event_push app readynasd '<delete-s resource-type="LocalApp" resource-id="LocalApp"><LocalApp appname="postgresql-readynas" success="1" reboot="1"/></delete-s>' 0 0
        ;;
     remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
        ;;
