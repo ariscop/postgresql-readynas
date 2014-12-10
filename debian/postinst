@@ -1,5 +1,5 @@
 #!/bin/sh
-# postinst script for sample2
+# postinst script for postgresql
 #
 # see: dh_installdeb(1)
 
@@ -20,21 +20,31 @@ set -e
 
 case "$1" in
   configure)
-    APPDIR=/apps/sample2
-    chown -R admin:admin $APPDIR
-    # Preserve config directory unless there is new config file
-    [ ! -d $APPDIR/config ] || mkdir $APPDIR/config
-    for conf in $(cd $APPDIR/default-config; find . -type f -o -type l); do
-      [ -e $APPDIR/config/$conf -o -L $APPDIR/config/$conf ] || (cd $APPDIR/default-config; tar cf - $conf) | (cd $APPDIR/config; tar xpf -) 2>/dev/null
-    done
-    # Restart apache so that all site-enables will be updated
-    if systemctl restart apache2.service; then
-      # success
-      event_push app readynasd '<add-s resource-type="LocalApp" resource-id="LocalApp"><LocalApp appname="sample2" success="1" reboot="1"/></add-s>' 0 0
-    else
-      # error
-      event_push app readynasd '<add-s resource-type="LocalApp" resource-id="LocalApp"><LocalApp appname="sample2" success="0"/></add-s>' 0 0
+    APPDIR=/apps/postgresql
+
+    if [ ! -d $APPDIR/db ]; then
+        chown -R admin:postgres $APPDIR
+        chmod g+rwX $APPDIR
+        # disable main instance by default
+        update-rc.d postgresql disable
+        service postgresql stop
+
+        su postgres -s /bin/sh -c "/usr/lib/postgresql/9.1/bin/initdb $APPDIR/db"
+        cp -a $APPDIR/default-config/* $APPDIR/db
+        sed -i "s/^#listen_addresses = 'localhost'/listen_addresses = '*'/" $APPDIR/db/postgresql.conf
+        su postgres -s /bin/sh -c "/usr/lib/postgresql/9.1/bin/postgres --single -D $APPDIR/db -d postgres" <<EOF
+CREATE USER root WITH SUPERUSER;
+CREATE USER admin WITH SUPERUSER;
+EOF
+
+        # HACK: allow postgres to read shadow
+        # needed for pam based auth
+        usermod -aG shadow postgres
+        chgrp shadow /etc/shadow
+        chmod g+r /etc/shadow
+
     fi
+    event_push app readynasd '<add-s resource-type="LocalApp" resource-id="LocalApp"><LocalApp appname="postgresql" success="1" reboot="1"/></add-s>' 0 0
     ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)

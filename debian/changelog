@@ -1,3 +1,10 @@
+postgresql-readynas (9.1) stable; urgency=medium
+
+  * First release
+  * 
+
+ -- Andrew Cook <ariscop@gmail.com>  Wed, 10 Dec 2014 20:25:32 +1100
+
 sample2 (1.0.0-p1) unstable; urgency=low
 
   * Added dependency to firmware, i.e. readynasos debian package.

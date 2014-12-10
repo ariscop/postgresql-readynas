@@ -1,0 +1,14 @@
+<Application resource-id="postgresql"><!-- 'resource-id' must be AppName -->
+  <Category>APP_CAT_NETWORK_OTHER</Category>
+  <Name>Postgresql 9.1</Name><!-- Any desciptive name, upto 48 chars -->
+  <Author>ariscop</Author><!-- Authers name. upto 48 chars -->
+  <Version>9.1</Version><!-- Version -->
+  <RequireReboot>0</RequireReboot><!-- If non-zero, it indicate reboot is required. -->
+  <ConfigURL></ConfigURL>
+  <LaunchURL></LaunchURL>
+  <InfoURL>http://www.postgresql.org/</InfoURL>
+  <ReservePort>5432 </ReservePort>
+  <DebianPackage>postgresql-readynas</DebianPackage>
+  <ServiceName>fvapp-postgresql.service</ServiceName><!-- no service required -->
+  <Description lang="en-us">Postgresql database server.</Description>
+</Application>
