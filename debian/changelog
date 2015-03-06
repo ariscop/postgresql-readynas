@@ -1,3 +1,9 @@
+postgresql-readynas (9.1+1) UNRELEASED; urgency=medium
+
+  * Fix problem preventing the creation of lock files
+
+ -- Andrew Cook <andrew@andrews-laptop>  Fri, 06 Mar 2015 21:36:01 +1100
+
 postgresql-readynas (9.1) stable; urgency=medium
 
   * First release

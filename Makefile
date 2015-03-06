@@ -5,6 +5,7 @@ all:
 
 install:
 	cp -pr files/apps $(DESTDIR)
+	cp -pr files/usr $(DESTDIR)
 
 
 veryclean:
